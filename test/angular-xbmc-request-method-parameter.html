@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>QUnit Service xbmcRequestMethodParameter Test Suite</title>
+        <link rel="stylesheet" href="../bower_components/qunit/qunit/qunit.css">
+    </head>
+    <body>
+        <div id="qunit"></div>
+        <div id="qunit-fixture">test markup</div>
+        <script type="text/javascript" src="../bower_components/qunit/qunit/qunit.js"></script>
+        <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
+        <script type="text/javascript" src="../src/angular-xbmc.js"></script>
+        <script type="text/javascript" src="angular-websocket.mock.js"></script>
+        <script type="text/javascript" src="angular-xbmc-introspection.mock.js"></script>
+        <script type="text/javascript">
+            angular.module('xbmc').service('xbmcRequest', function() {});
+        </script>
+        <script type="text/javascript" src="../src/Validation/angular-xbmc-request-method-parameter.js"></script>
+        <script type="text/javascript" src="angular-xbmc-request-method-parameter.test.js"></script>
+    </body>
+</html>
