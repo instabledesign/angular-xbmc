@@ -99,6 +99,8 @@ angular.module('xbmc')
                     return validators.join('||');
                 } else if(parameterSchema.$ref !== null) {
                     return _this.deduceValidatorsFromSchema(parameterSchema.$ref);
+                } else {
+                    return _this.deduceValidatorsFromSchema(parameterSchema);
                 }
 
                 throw new Error('No type found into the schema');
@@ -113,22 +115,29 @@ angular.module('xbmc')
                     validators.push(_this.deduceValidatorsFromSchema(xbmcIntrospection.schema['types'][_extends]));
                     operatorCondition = '&&';
                 }
-//                if(angular.isString(schema.$ref)) {
-//                    validators.push(_this.deduceValidatorsFromSchema(xbmcIntrospection.schema['types'][schema.$ref]));
-//                }
-                if(schema.type == 'array' && angular.isObject(schema.items) && schema.items.type && schema.items.type == 'string' && schema.uniqueItems) {
+
+                if(false/* && angular.isString(schema.$ref)*/) {
+                    validators.push(_this.deduceValidatorsFromSchema(xbmcIntrospection.schema['types'][schema.$ref]));
+                }
+                else if(schema.items && schema.items.enums && schema.items.type == 'string') {
+                    validators.push('Array.inArray');
+                }
+                else if(schema.enums && schema.type == 'string') {
+                    validators.push('Array.inArray');
+                }
+                else if(schema.type == 'array' && angular.isObject(schema.items) && schema.items.type && schema.items.type == 'string' && schema.uniqueItems) {
                     validators.push('Array.items.isString.uniqueItems');
                 }
-                if(schema.type == 'array' && angular.isObject(schema.items) && schema.items.type && schema.items.type == 'string') {
+                else if(schema.type == 'array' && angular.isObject(schema.items) && schema.items.type && schema.items.type == 'string') {
                     validators.push('Array.items.isString');
                 }
-                if(schema.type == 'boolean') {
+                else if(schema.type == 'boolean') {
                     validators.push('Boolean.isBoolean');
                 }
-                if(schema.type == 'object' && angular.isObject(schema.additionalProperties) && schema.additionalProperties.type && schema.additionalProperties.type == 'string') {
+                else if(schema.type == 'object' && angular.isObject(schema.additionalProperties) && schema.additionalProperties.type && schema.additionalProperties.type == 'string') {
                     validators.push('Object.additionalProperties.isString');
                 }
-                if(schema.type == 'string') {
+                else if(schema.type == 'string') {
                     validators.push('String.isString');
                 }
 
