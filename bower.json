@@ -30,9 +30,7 @@
   ],
   "dependencies": {
     "angular": "~1.2.14",
+    "angular-mocks": "~1.2.14",
     "angular-websocket-provider": "~0.1.1"
-  },
-  "devDependencies": {
-    "qunit": "~1.14.0"
   }
 }

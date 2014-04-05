@@ -37,7 +37,7 @@ angular.module('xbmc')
                         return false;
                     }
 
-
+                    // ...
                 });
             }
         }

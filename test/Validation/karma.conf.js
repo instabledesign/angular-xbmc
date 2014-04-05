@@ -5,23 +5,24 @@ module.exports = function(config) {
     config.set({
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
-        basePath: '',
+        basePath: '../..',
 
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-        frameworks: ['jasmine', 'requirejs'],
+        frameworks: ['jasmine'],
 
 
         // list of files / patterns to load in the browser
         files: [
-            'bower_components/angular/angular.min.js',
+            'bower_components/angular/angular.js',
+            'bower_components/angular-mocks/angular-mocks.js',
             'src/angular-xbmc.js',
             'test/specs/angular-websocket.mock.js',
             'test/specs/angular-xbmc-introspection.mock.js',
             'test/specs/angular-xbmc-request.mock.js',
             'src/Validation/angular-xbmc-request-method-parameter.js',
-            'test/angular-xbmc-request-method-parameter.test.js'
+            'test/Validation/angular-xbmc-request-method-parameter.test.js'
         ],
 
 
@@ -58,22 +59,15 @@ module.exports = function(config) {
 
 
         // enable / disable watching file and executing tests whenever any file changes
-        autoWatch: true,
+        autoWatch: false,
 
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
         browsers: ['Chrome'],
 
-
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
-        singleRun: false
-
-//        plugins: [
-//            'karma-jasmine',
-//            'karma-requirejs',
-//            'karma-phantomjs-launcher'
-//        ]
+        singleRun: true
     });
 };
