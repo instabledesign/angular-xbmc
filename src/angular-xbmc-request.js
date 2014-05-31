@@ -237,6 +237,7 @@ angular.module('xbmc')
             $rootScope.$on('websocket.connected', function () {
                 $websocket.request({method: 'JSONRPC.Introspect'}).then(
                     function (data) {
+                        console.log(JSON.stringify(data.result));
                         // Do the introspection (prepare all public methods for the controllers)
                         xbmcIntrospection.introspect(data.result, _this.request);
                     }
