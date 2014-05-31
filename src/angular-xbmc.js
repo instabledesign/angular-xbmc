@@ -17,8 +17,8 @@ angular.module('xbmc', ['websocket'])
      * @require angular-xbmc-introspection Get all xbmc available method
      * @require angular-xbmc-request Send request to xbmc
      */
-    .service('xbmc', ['$rootScope', 'xbmcIntrospection', 'xbmcRequest',
-        function ($rootScope, xbmcIntrospection, xbmcRequest) {
+    .service('xbmc', ['$rootScope', 'xbmcIntrospection', 'xbmcRequestManager',
+        function ($rootScope, xbmcIntrospection, xbmcRequestManager) {
             var _this = this;
 
             // At first, we are not connected to xbmc and the introspection is not done

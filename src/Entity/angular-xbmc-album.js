@@ -20,7 +20,7 @@ angular.module('xbmc')
                 _this._artists = {};
 
                 return _this;
-            };
+            }
 
             /**
              * Add usefull album method
