@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('xbmc')
-    /**
-     * Angular xbmc Song factory
-     *
-     * @require $q Promise for model request
-     * @require xbmcIntrospection Get all xbmc available method
-     * @require xbmcORMCollection Return orm collection
-     */
+/**
+ * Angular xbmc Song factory
+ *
+ * @require $q Promise for model request
+ * @require xbmcIntrospection Get all xbmc available method
+ * @require xbmcORMCollection Return orm collection
+ */
     .factory('xbmcSongEntity', ['$q', 'xbmcIntrospection', 'xbmcORMCollection',
         function ($q, xbmcIntrospection, xbmcORMCollection) {
 
@@ -47,7 +47,7 @@ angular.module('xbmc')
                  *
                  * @return promise
                  */
-                getGenres : function () {
+                getGenres: function () {
                     var _this = this;
                     var defered = $q.defer();
                     var params = {
@@ -81,7 +81,7 @@ angular.module('xbmc')
                  *
                  * @return promise
                  */
-                getAlbum  : function () {
+                getAlbum: function () {
                     var _this = this;
                     var defered = $q.defer();
                     var params = {
@@ -108,7 +108,7 @@ angular.module('xbmc')
                  *
                  * @return promise
                  */
-                getArtist : function () {
+                getArtist: function () {
                     var _this = this;
                     var defered = $q.defer();
                     var params = {
@@ -134,7 +134,7 @@ angular.module('xbmc')
                  *
                  * @return true
                  */
-                play      : function () {
+                play: function () {
                     var params = {
                         playlistid: 0,
                         position  : 0,

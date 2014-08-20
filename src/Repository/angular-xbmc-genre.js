@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('xbmc')
-    /**
-     * Angular xbmc Genre repository
-     *
-     * @require xbmcGenreEntity The genre model
-     * @require xbmcCache Get xbmc cache
-     * @require xbmcORMCollection Return orm collection
-     */
+/**
+ * Angular xbmc Genre repository
+ *
+ * @require xbmcGenreEntity The genre model
+ * @require xbmcCache Get xbmc cache
+ * @require xbmcORMCollection Return orm collection
+ */
     .service('xbmcGenreRepository', ['xbmcGenreEntity', 'xbmcCache', 'xbmcORMCollection',
         function (xbmcGenreEntity, xbmcCache, xbmcORMCollection) {
 

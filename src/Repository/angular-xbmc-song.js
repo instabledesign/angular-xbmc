@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('xbmc')
-    /**
-     * Angular xbmc Song repository
-     *
-     * @require xbmcSongEntity The song model
-     * @require xbmcCache Get xbmc cache
-     * @require xbmcORMCollection Return orm collection
-     */
+/**
+ * Angular xbmc Song repository
+ *
+ * @require xbmcSongEntity The song model
+ * @require xbmcCache Get xbmc cache
+ * @require xbmcORMCollection Return orm collection
+ */
     .service('xbmcSongRepository', ['xbmcSongEntity', 'xbmcCache', 'xbmcORMCollection',
         function (xbmcSongEntity, xbmcCache, xbmcORMCollection) {
 

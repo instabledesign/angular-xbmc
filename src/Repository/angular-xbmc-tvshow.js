@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('xbmc')
-    /**
-     * Angular xbmc TVShow repository
-     *
-     * @require xbmcTvshowEntity The TVShow model
-     * @require xbmcCache Get xbmc cache
-     * @require xbmcORMCollection Return orm collection
-     */
+/**
+ * Angular xbmc TVShow repository
+ *
+ * @require xbmcTvshowEntity The TVShow model
+ * @require xbmcCache Get xbmc cache
+ * @require xbmcORMCollection Return orm collection
+ */
     .service('xbmcTvshowRepository', ['xbmcTvshowEntity', 'xbmcCache', 'xbmcORMCollection',
         function (xbmcTvshowEntity, xbmcCache, xbmcORMCollection) {
 

@@ -21,12 +21,12 @@ angular.module('xbmc')
                     var _this = this;
                     var defered = $q.defer();
                     var params = {
-                        playerid: this._id,
+                        playerid  : this._id,
                         properties: xbmcIntrospection.getTypeFields("Player.Property.Name")
                     };
 
                     xbmcIntrospection.introspection.Player.GetProperties(params)
-                        .then(function(data) {
+                        .then(function (data) {
                             angular.extend(_this, data.result);
                             defered.resolve(_this);
                         })
@@ -36,12 +36,12 @@ angular.module('xbmc')
 
                     return defered.promise;
                 },
-                getItem: function () {
+                getItem      : function () {
                     var _this = this;
                     var defered = $q.defer();
 
                     var params = {
-                        playerid: _this.playerid,
+                        playerid  : _this.playerid,
                         properties: xbmcIntrospection.getTypeFields("List.Fields.All")
                     };
 
@@ -56,7 +56,7 @@ angular.module('xbmc')
 
                     return defered.promise;
                 },
-                playPause: function() {
+                playPause    : function () {
                     var _this = this;
                     var params = {
                         playerid: _this.playerid
@@ -70,20 +70,20 @@ angular.module('xbmc')
 
                     _this.speed = speed;
 
-                    function updatePercentageFromTime () {
+                    function updatePercentageFromTime() {
                         var timeInMillisecond = ((_this.time.hours * 60 * 60 * 1000) || 0) + ((_this.time.minutes * 60 * 1000) || 0) + ((_this.time.seconds * 1000) || 0) + (_this.time.milliseconds || 0);
                         var totaltimeInMillisecond = ((_this.totaltime.hours * 60 * 60 * 1000) || 0) + ((_this.totaltime.minutes * 60 * 1000) || 0) + ((_this.totaltime.seconds * 1000) || 0) + (_this.totaltime.milliseconds || 0);
                         _this.percentage = timeInMillisecond / totaltimeInMillisecond * 100;
                     }
 
-                    function increaseTime () {
-                        _this.time.seconds ++;
+                    function increaseTime() {
+                        _this.time.seconds++;
                         if (_this.time.seconds > 59) {
                             _this.time.seconds = 0;
-                            _this.time.minutes ++;
+                            _this.time.minutes++;
                             if (_this.time.minutes > 59) {
                                 _this.time.minutes = 0;
-                                _this.time.hours ++;
+                                _this.time.hours++;
                             }
                         }
                     }
@@ -95,10 +95,10 @@ angular.module('xbmc')
                         }
                     }
                     else {
-                        _this.interval = $interval(function(){
+                        _this.interval = $interval(function () {
                             increaseTime();
                             updatePercentageFromTime();
-                        },1000);
+                        }, 1000);
                     }
 
                 }

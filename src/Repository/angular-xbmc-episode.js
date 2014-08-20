@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('xbmc')
-    /**
-     * Angular xbmc Episode repository
-     *
-     * @require xbmcEpisodeEntity The episode model
-     * @require xbmcCache Get xbmc cache
-     * @require xbmcORMCollection Return orm collection
-     */
+/**
+ * Angular xbmc Episode repository
+ *
+ * @require xbmcEpisodeEntity The episode model
+ * @require xbmcCache Get xbmc cache
+ * @require xbmcORMCollection Return orm collection
+ */
     .service('xbmcEpisodeRepository', ['xbmcEpisodeEntity', 'xbmcCache', 'xbmcORMCollection',
         function (xbmcEpisodeEntity, xbmcCache, xbmcORMCollection) {
 

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Angular xbmc module</title>
+    <script type="text/javascript" src="../lib/angular/angular.min.js"></script>
+    <script type="text/javascript" src="../lib/angular-md5/angular-md5.min.js"></script>
+    <script type="text/javascript" src="../lib/angular-websocket-provider/dist/angular-websocket.min.js"></script>
+    <script type="text/javascript" src="../lib/javascript-state-machine/state-machine.min.js"></script>
+    <script type="text/javascript" src="../src/angular-xbmc.js"></script>
+    <script type="text/javascript" src="../src/angular-xbmc-cache.js"></script>
+    <script type="text/javascript" src="../src/angular-xbmc-connexion.js"></script>
+    <script type="text/javascript" src="../src/angular-xbmc-introspection.js"></script>
+    <script type="text/javascript" src="../src/angular-xbmc-orm.js"></script>
+    <script type="text/javascript" src="../src/angular-xbmc-request-manager.js"></script>
+    <script type="text/javascript" src="../src/angular-xbmc-request-workflow.js"></script>
+    <script type="text/javascript" src="../src/angular-xbmc-request-queue.js"></script>
+    <script type="text/javascript" src="../src/angular-xbmc-request-validator.js"></script>
+    <script type="text/javascript" src="../src/angular-xbmc-request.js"></script>
+    <script type="text/javascript" src="../src/angular-xbmc-response-manager.js"></script>
+    <script type="text/javascript" src="../src/angular-xbmc-response.js"></script>
+    <script type="application/javascript">
+        var myApp = angular.module('myApp', ['xbmc'])
+                .config(['$websocketProvider',
+                    function ($websocketProvider) {
+                        // Configuration of the $websocketProvider
+                        $websocketProvider.path = 'ws://localhost:9090';
+                    }
+                ])
+                .controller('MyCtrl', function ($scope, xbmc) {
+                    xbmc.onReady(function () {
+                        console.log('Xbmc is ready');
+                        xbmc.VideoLibrary.GetMovies(null, {'hydrate': false}).then(
+                            function (movies) {
+                                console.log('1', movies);
+                                $scope.movie = movies;
+                            },
+                            function () {
+
+                            },
+                            function (p) {
+                                console.log('1', p);
+                            }
+                        );
+
+                        setTimeout(function(){
+                            xbmc.VideoLibrary.GetMovies(null, {'hydrate': false}).then(
+                                function (movies) {
+                                    console.log('2', movies);
+                                    $scope.movie = movies;
+                                },
+                                function () {
+
+                                },
+                                function (p) {
+                                    console.log('2', p);
+                                }
+                            );
+                        }, 1000);
+                    });
+                });
+    </script>
+</head>
+<body>
+<div data-ng-app="myApp">
+    <div data-ng-controller="MyCtrl">{{ response }}</div>
+</div>
+</body>
+</html>

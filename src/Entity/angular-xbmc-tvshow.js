@@ -33,7 +33,7 @@ angular.module('xbmc')
                  *
                  * @return promise
                  */
-                getDetails : function () {
+                getDetails: function () {
                     var params = {
                         tvshowid  : this._id,
                         properties: xbmcIntrospection.getTypeFields("Video.Fields.TVShow")
@@ -47,7 +47,7 @@ angular.module('xbmc')
                  *
                  * @return promise
                  */
-                getGenres  : function () {
+                getGenres: function () {
                     var _this = this;
                     var defered = $q.defer();
                     var params = {
@@ -83,7 +83,7 @@ angular.module('xbmc')
                  *
                  * @return promise
                  */
-                getSeasons : function () {
+                getSeasons: function () {
                     var _this = this;
                     var defered = $q.defer();
                     var params = {

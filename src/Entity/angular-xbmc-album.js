@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('xbmc')
-    /**
-     * Angular xbmc Album factory
-     *
-     * @require $q Promise for model request
-     * @require xbmcIntrospection Get all xbmc available method
-     * @require xbmcORMCollection To add result
-     */
+/**
+ * Angular xbmc Album factory
+ *
+ * @require $q Promise for model request
+ * @require xbmcIntrospection Get all xbmc available method
+ * @require xbmcORMCollection To add result
+ */
     .factory('xbmcAlbumEntity', ['$q', 'xbmcIntrospection', 'xbmcORMCollection',
         function ($q, xbmcIntrospection, xbmcORMCollection) {
 

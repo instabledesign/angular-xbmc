@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('xbmc')
-    /**
-     * Angular xbmc Episode factory
-     *
-     * @require $q Promise for model request
-     * @require xbmcIntrospection Get all xbmc available method
-     */
+/**
+ * Angular xbmc Episode factory
+ *
+ * @require $q Promise for model request
+ * @require xbmcIntrospection Get all xbmc available method
+ */
     .factory('xbmcEpisodeEntity', ['$q', 'xbmcIntrospection',
         function ($q, xbmcIntrospection) {
 
@@ -44,7 +44,7 @@ angular.module('xbmc')
                  *
                  * @return promise
                  */
-                getTVShow : function () {
+                getTVShow: function () {
                     var _this = this;
                     var defered = $q.defer();
                     var params = {
@@ -71,7 +71,7 @@ angular.module('xbmc')
                  *
                  * @return promise
                  */
-                getSeason : function () {
+                getSeason: function () {
                     var _this = this;
                     var defered = $q.defer();
                     var params = {

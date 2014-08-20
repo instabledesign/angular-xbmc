@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('xbmc')
-    /**
-     * Angular xbmc Artist factory
-     *
-     * @require $q Promise for model request
-     * @require xbmcIntrospection Get all xbmc available method
-     */
+/**
+ * Angular xbmc Artist factory
+ *
+ * @require $q Promise for model request
+ * @require xbmcIntrospection Get all xbmc available method
+ */
     .factory('xbmcArtistEntity', ['$q', 'xbmcIntrospection',
         function ($q, xbmcIntrospection) {
 
@@ -44,7 +44,7 @@ angular.module('xbmc')
                  *
                  * @return promise
                  */
-                getSongs  : function () {
+                getSongs: function () {
                     var _this = this;
 
                     var params = {

@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('xbmc')
-    /**
-     * Angular xbmc Season repository
-     *
-     * @require xbmcSeasonEntity The season model
-     * @require xbmcCache Get xbmc cache
-     * @require xbmcORMCollection Return orm collection
-     */
+/**
+ * Angular xbmc Season repository
+ *
+ * @require xbmcSeasonEntity The season model
+ * @require xbmcCache Get xbmc cache
+ * @require xbmcORMCollection Return orm collection
+ */
     .service('xbmcSeasonRepository', ['xbmcSeasonEntity', 'xbmcCache', 'xbmcORMCollection',
         function (xbmcSeasonEntity, xbmcCache, xbmcORMCollection) {
 

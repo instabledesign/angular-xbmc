@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('xbmc')
-    /**
-     * Angular xbmc Movie repository
-     *
-     * @require xbmcMovieEntity The movie model
-     * @require xbmcCache Get xbmc cache
-     * @require xbmcORMCollection Return orm collection
-     */
+/**
+ * Angular xbmc Movie repository
+ *
+ * @require xbmcMovieEntity The movie model
+ * @require xbmcCache Get xbmc cache
+ * @require xbmcORMCollection Return orm collection
+ */
     .service('xbmcMovieRepository', ['xbmcMovieEntity', 'xbmcCache', 'xbmcORMCollection',
         function (xbmcMovieEntity, xbmcCache, xbmcORMCollection) {
 

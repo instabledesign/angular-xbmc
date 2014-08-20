@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('xbmc')
-    /**
-     * Angular xbmc Season factory
-     *
-     * @require $q Promise for model request
-     * @require xbmcIntrospection Get all xbmc available method
-     * @require xbmcORMCollection Return orm collection
-     */
+/**
+ * Angular xbmc Season factory
+ *
+ * @require $q Promise for model request
+ * @require xbmcIntrospection Get all xbmc available method
+ * @require xbmcORMCollection Return orm collection
+ */
     .factory('xbmcSeasonEntity', ['$q', 'xbmcIntrospection', 'xbmcORMCollection',
         function ($q, xbmcIntrospection, xbmcORMCollection) {
 
@@ -36,12 +36,12 @@ angular.module('xbmc')
                     var _this = this;
                     var defered = $q.defer();
                     var params = {
-                        tvshowid: _this._id,
+                        tvshowid  : _this._id,
                         properties: xbmcIntrospection.getTypeFields("Video.Fields.TVShow")
                     };
 
                     xbmcIntrospection.introspection.VideoLibrary.GetTVShowDetails(params)
-                        .then(function(tvshow) {
+                        .then(function (tvshow) {
 
                             _this._tvshow = tvshow;
                             tvshow['_seasons'][_this._id] = _this;
@@ -59,18 +59,18 @@ angular.module('xbmc')
                  *
                  * @return promise
                  */
-                getEpisodes: function(params) {
+                getEpisodes: function (params) {
                     var _this = this;
                     var defered = $q.defer();
                     var params = {
-                        tvshowid: this._id,
+                        tvshowid  : this._id,
                         properties: xbmcIntrospection.getTypeFields("Video.Fields.Episode")
                     };
 
                     xbmcIntrospection.introspection.VideoLibrary.GetEpisodes(params)
-                        .then(function(episodes) {
+                        .then(function (episodes) {
                             var episodesCollection = new xbmcORMCollection();
-                            angular.forEach(episodes, function(episode) {
+                            angular.forEach(episodes, function (episode) {
 
                                 _this._episodes[episode._id] = episode;
                                 episodesCollection.addItem(episode);

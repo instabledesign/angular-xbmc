@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('xbmc')
-    /**
-     * Angular xbmc Movie factory
-     *
-     * @require $q Promise for model request
-     * @require xbmcIntrospection Get all xbmc available method
-     * @require xbmcORMCollection Return orm collection
-     */
+/**
+ * Angular xbmc Movie factory
+ *
+ * @require $q Promise for model request
+ * @require xbmcIntrospection Get all xbmc available method
+ * @require xbmcORMCollection Return orm collection
+ */
     .factory('xbmcMovieEntity', ['$q', 'xbmcIntrospection', 'xbmcORMCollection',
         function ($q, xbmcIntrospection, xbmcORMCollection) {
 
@@ -45,7 +45,7 @@ angular.module('xbmc')
                  *
                  * @return promise
                  */
-                getGenres : function () {
+                getGenres: function () {
                     var _this = this;
                     var defered = $q.defer();
                     var params = {
@@ -81,7 +81,7 @@ angular.module('xbmc')
                  *
                  * @return boolean
                  */
-                play      : function () {
+                play: function () {
                     var params = {
                         playlistid: 1,
                         position  : 0,

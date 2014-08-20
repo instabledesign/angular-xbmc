@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('xbmc')
-    /**
-     * Angular xbmc Genre factory
-     */
+/**
+ * Angular xbmc Genre factory
+ */
     .factory('xbmcGenreEntity', [
         function () {
 

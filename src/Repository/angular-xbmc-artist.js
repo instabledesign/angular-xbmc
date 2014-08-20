@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('xbmc')
-    /**
-     * Angular xbmc Artist repository
-     *
-     * @require xbmcArtistEntity The artist model
-     * @require xbmcCache Get xbmc cache
-     * @require xbmcORMCollection Return orm collection
-     */
+/**
+ * Angular xbmc Artist repository
+ *
+ * @require xbmcArtistEntity The artist model
+ * @require xbmcCache Get xbmc cache
+ * @require xbmcORMCollection Return orm collection
+ */
     .service('xbmcArtistRepository', ['xbmcArtistEntity', 'xbmcCache', 'xbmcORMCollection',
         function (xbmcArtistEntity, xbmcCache, xbmcORMCollection) {
             var _this = this;
