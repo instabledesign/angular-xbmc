@@ -6,7 +6,6 @@ An angular library for xbmc
 
 * [Anthony Moutte](https://github.com/instabledesign)
 * [Styvo](https://github.com/FullMoonIssue)
-* [Ophélie Moutte](http://www.emamoutte.fr/)
 
 # Requirements
 
