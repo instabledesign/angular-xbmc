@@ -5,18 +5,35 @@
  *
  */
 angular.module('xbmc')
-    .factory('xbmcRequest', [
-        function () {
+    .constant('JSONRPC_VERSION', '2.0')
+    .factory('xbmcRequest', ['JSONRPC_VERSION',
+        function (JSONRPC_VERSION) {
 
-            function xbmcRequest(){
-                var _this = this;
-                _this.id = null;
-                _this.jsonrpc = 2;
-                _this.method = '';
-                _this.params = {};
+            function xbmcRequest(id, attributes, options) {
+                this.id = id;
+                this.jsonrpc = JSONRPC_VERSION;
+                this.method;
+                this.params;
+                this.options = {};
 
-                return _this;
+                angular.extend(this, attributes);
+                angular.extend(this.options, options);
+
+                return this;
             }
+
+            xbmcRequest.prototype.toJson = function () {
+                return JSON.stringify({
+                    id     : this.id,
+                    jsonrpc: this.jsonrpc,
+                    method : this.method,
+                    params : this.params || undefined
+                });
+            };
+
+            xbmcRequest.prototype.getOption = function (name) {
+                return this.options.hasOwnProperty(name) ? this.options[name] : null;
+            };
 
             return xbmcRequest;
         }

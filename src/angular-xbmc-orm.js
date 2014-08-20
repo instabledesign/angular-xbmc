@@ -1,22 +1,22 @@
 'use strict';
 
 angular.module('xbmc')
-    /**
-     * Angular XBMC ORM service
-     * Route the response data to the appropriate repository
-     * And return the hydrated result
-     *
-     * @require xbmcORMCollection
-     * @require xbmcMovieRepository
-     * @require xbmcAlbumRepository
-     * @require xbmcSongRepository
-     * @require xbmcGenreRepository
-     * @require xbmcArtistRepository
-     * @require xbmcTvshowRepository
-     * @require xbmcSeasonRepository
-     * @require xbmcEpisodeRepository
-     * @require xbmcPlayerRepository
-     */
+/**
+ * Angular XBMC ORM service
+ * Route the response data to the appropriate repository
+ * And return the hydrated result
+ *
+ * @require xbmcORMCollection
+ * @require xbmcMovieRepository
+ * @require xbmcAlbumRepository
+ * @require xbmcSongRepository
+ * @require xbmcGenreRepository
+ * @require xbmcArtistRepository
+ * @require xbmcTvshowRepository
+ * @require xbmcSeasonRepository
+ * @require xbmcEpisodeRepository
+ * @require xbmcPlayerRepository
+ */
     .service('xbmcORM', ['xbmcORMCollection', 'xbmcMovieRepository', 'xbmcAlbumRepository', 'xbmcSongRepository', 'xbmcGenreRepository', 'xbmcArtistRepository', 'xbmcTvshowRepository', 'xbmcSeasonRepository', 'xbmcEpisodeRepository', 'xbmcPlayerRepository',
         function (xbmcORMCollection, xbmcMovieRepository, xbmcAlbumRepository, xbmcSongRepository, xbmcGenreRepository, xbmcArtistRepository, xbmcTvshowRepository, xbmcSeasonRepository, xbmcEpisodeRepository, xbmcPlayerRepository) {
             var _this = this;
@@ -73,9 +73,9 @@ angular.module('xbmc')
             return this;
         }
     ])
-    /**
-     * ORM collection factory
-     */
+/**
+ * ORM collection factory
+ */
     .factory('xbmcORMCollection', [
         function () {
 

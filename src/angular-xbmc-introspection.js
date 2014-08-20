@@ -1,14 +1,14 @@
 'use strict';
 
 angular.module('xbmc')
-    /**
-     * Angular XBMC introspection service
-     * Get the XBMC introspection schema
-     *
-     * @require $rootscope Emit events
-     *
-     * @event xbmc.introspected When the introspection was done
-     */
+/**
+ * Angular XBMC introspection service
+ * Get the XBMC introspection schema
+ *
+ * @require $rootscope Emit events
+ *
+ * @event xbmc.introspected When the introspection was done
+ */
     .service('xbmcIntrospection', ['$rootScope',
         function ($rootScope) {
             var _this = this;
