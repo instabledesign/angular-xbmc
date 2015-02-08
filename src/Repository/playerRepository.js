@@ -1,12 +1,23 @@
 'use strict';
 
 angular.module('xbmc')
-    .service('xbmcPlayerRepository', ['$rootScope', 'xbmcPlayerEntity', 'xbmcCache', 'xbmcORMCollection',
-        function ($rootScope, xbmcPlayerEntity, xbmcCache, xbmcORMCollection) {
+    .service('xbmcPlayerRepository', ['$rootScope', 'xbmcPlayerEntity', 'xbmcCache', 'xbmcCollection',
+        function ($rootScope, xbmcPlayerEntity, xbmcCache, xbmcCollection) {
 
             var _this = this;
 
-            var cache = xbmcCache.cache['players'] = new xbmcORMCollection();
+            var cache = xbmcCache.cache['players'] = new xbmcCollection();
+
+            _this.canHydrate = function (data) {
+                var canHydrate = false;
+                if (angular.isArray(data.result)) {
+                    for (var id in data.result) {
+                        canHydrate = data.result[id].playerid != undefined
+                    }
+                }
+
+                return canHydrate;
+            };
 
             _this.hydrate = function (data) {
                 return _this.createOrUpdatePlayers(data.result);
@@ -25,7 +36,7 @@ angular.module('xbmc')
 
             _this.createOrUpdatePlayers = function (result) {
                 if (angular.isArray(result)) {
-                    var collection = new xbmcORMCollection;
+                    var collection = new xbmcCollection;
 
                     angular.forEach(result, function (values) {
                         collection.addItem(_this.createOrUpdatePlayer(values));

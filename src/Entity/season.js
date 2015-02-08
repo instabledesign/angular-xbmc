@@ -6,10 +6,10 @@ angular.module('xbmc')
  *
  * @require $q Promise for model request
  * @require xbmcIntrospection Get all xbmc available method
- * @require xbmcORMCollection Return orm collection
+ * @require xbmcCollection Return orm collection
  */
-    .factory('xbmcSeasonEntity', ['$q', 'xbmcIntrospection', 'xbmcORMCollection',
-        function ($q, xbmcIntrospection, xbmcORMCollection) {
+    .factory('xbmcSeasonEntity', ['$q', 'xbmcIntrospection', 'xbmcCollection',
+        function ($q, xbmcIntrospection, xbmcCollection) {
 
             function xbmcSeason() {
 
@@ -69,7 +69,7 @@ angular.module('xbmc')
 
                     xbmcIntrospection.introspection.VideoLibrary.GetEpisodes(params)
                         .then(function (episodes) {
-                            var episodesCollection = new xbmcORMCollection();
+                            var episodesCollection = new xbmcCollection();
                             angular.forEach(episodes, function (episode) {
 
                                 _this._episodes[episode._id] = episode;

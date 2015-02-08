@@ -6,14 +6,18 @@ angular.module('xbmc')
  *
  * @require xbmcMovieEntity The movie model
  * @require xbmcCache Get xbmc cache
- * @require xbmcORMCollection Return orm collection
+ * @require xbmcCollection Return orm collection
  */
-    .service('xbmcMovieRepository', ['xbmcMovieEntity', 'xbmcCache', 'xbmcORMCollection',
-        function (xbmcMovieEntity, xbmcCache, xbmcORMCollection) {
+    .service('xbmcMovieRepository', ['xbmcMovieEntity', 'xbmcCache', 'xbmcCollection',
+        function (xbmcMovieEntity, xbmcCache, xbmcCollection) {
 
             var _this = this;
 
-            var cache = xbmcCache.cache['movies'] = new xbmcORMCollection();
+            var cache = xbmcCache.cache['movies'] = new xbmcCollection();
+
+            _this.canHydrate = function (data) {
+                return data.result.movies || data.result.moviedetails;
+            };
 
             _this.hydrate = function (data) {
 
@@ -39,7 +43,7 @@ angular.module('xbmc')
             function createOrUpdateMovies(dataMovies) {
 
                 if (angular.isArray(dataMovies)) {
-                    var result = new xbmcORMCollection();
+                    var result = new xbmcCollection();
 
                     angular.forEach(dataMovies, function (dataMovie) {
                         result.addItem(createOrUpdateMovie(dataMovie));

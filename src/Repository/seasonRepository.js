@@ -6,14 +6,19 @@ angular.module('xbmc')
  *
  * @require xbmcSeasonEntity The season model
  * @require xbmcCache Get xbmc cache
- * @require xbmcORMCollection Return orm collection
+ * @require xbmcCollection Return orm collection
  */
-    .service('xbmcSeasonRepository', ['xbmcSeasonEntity', 'xbmcCache', 'xbmcORMCollection',
-        function (xbmcSeasonEntity, xbmcCache, xbmcORMCollection) {
+    .service('xbmcSeasonRepository', ['xbmcSeasonEntity', 'xbmcCache', 'xbmcCollection',
+        function (xbmcSeasonEntity, xbmcCache, xbmcCollection) {
 
             var _this = this;
 
-            var cache = xbmcCache.cache['seasons'] = new xbmcORMCollection();
+            var cache = xbmcCache.cache['seasons'] = new xbmcCollection();
+
+
+            _this.canHydrate = function (data) {
+                return data.result.seasons;
+            };
 
             _this.hydrate = function (data) {
 
@@ -39,7 +44,7 @@ angular.module('xbmc')
             _this.createOrUpdateSeasons = function (dataSeasons) {
 
                 if (angular.isArray(dataSeasons)) {
-                    var result = new xbmcORMCollection();
+                    var result = new xbmcCollection();
 
                     angular.forEach(dataSeasons, function (value) {
                         result.addItem(_this.createOrUpdateSeason(value));

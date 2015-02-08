@@ -8,8 +8,8 @@ angular.module('xbmc')
  * @require xbmcIntrospection Get all xbmc available method
  * @require xbmcIntrospection Return orm collection
  */
-    .factory('xbmcTvshowEntity', ['$q', 'xbmcIntrospection', 'xbmcORMCollection',
-        function ($q, xbmcIntrospection, xbmcORMCollection) {
+    .factory('xbmcTvshowEntity', ['$q', 'xbmcIntrospection', 'xbmcCollection',
+        function ($q, xbmcIntrospection, xbmcCollection) {
 
             function xbmcTvshow() {
 
@@ -58,7 +58,7 @@ angular.module('xbmc')
                     xbmcIntrospection.introspection.VideoLibrary.GetGenres(params)
                         .then(function (genres) {
                             var allGenresByLabelKey = genres.getByLabelKey();
-                            var genresCollection = new xbmcORMCollection();
+                            var genresCollection = new xbmcCollection();
 
                             angular.forEach(_this.genre, function (genreLabel) {
                                 if (allGenresByLabelKey[genreLabel]) {
@@ -93,7 +93,7 @@ angular.module('xbmc')
 
                     xbmcIntrospection.introspection.VideoLibrary.GetSeasons(params)
                         .then(function (seasons) {
-                            var seasonsCollection = new xbmcORMCollection();
+                            var seasonsCollection = new xbmcCollection();
                             angular.forEach(seasons, function (season) {
 
                                 _this._seasons[season._id] = season;
@@ -124,7 +124,7 @@ angular.module('xbmc')
 
                     xbmcIntrospection.introspection.VideoLibrary.GetEpisodes(params)
                         .then(function (episodes) {
-                            var episodesCollection = new xbmcORMCollection();
+                            var episodesCollection = new xbmcCollection();
                             angular.forEach(episodes, function (episode) {
 
                                 _this._episodes[episode._id] = episode;

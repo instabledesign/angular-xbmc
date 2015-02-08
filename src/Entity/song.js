@@ -6,10 +6,10 @@ angular.module('xbmc')
  *
  * @require $q Promise for model request
  * @require xbmcIntrospection Get all xbmc available method
- * @require xbmcORMCollection Return orm collection
+ * @require xbmcCollection Return orm collection
  */
-    .factory('xbmcSongEntity', ['$q', 'xbmcIntrospection', 'xbmcORMCollection',
-        function ($q, xbmcIntrospection, xbmcORMCollection) {
+    .factory('xbmcSongEntity', ['$q', 'xbmcIntrospection', 'xbmcCollection',
+        function ($q, xbmcIntrospection, xbmcCollection) {
 
             function xbmcSong() {
 
@@ -56,7 +56,7 @@ angular.module('xbmc')
 
                     xbmcIntrospection.introspection.AudioLibrary.GetGenres(params)
                         .then(function (genres) {
-                            var genresCollection = new xbmcORMCollection();
+                            var genresCollection = new xbmcCollection();
 
                             angular.forEach(_this.genreid, function (genreId) {
                                 if (genres[genreId]) {

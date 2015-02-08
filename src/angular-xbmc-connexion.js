@@ -21,7 +21,7 @@ angular.module('xbmc')
 
             _this.exec = function (request) {
                 $websocket.send(request);
-            }
+            };
 
             // When the websocket is connected, we launch the method introspection to xbmc
             $rootScope.$on('websocket.open', function () {

@@ -6,13 +6,17 @@ angular.module('xbmc')
  *
  * @require xbmcArtistEntity The album model
  * @require xbmcCache Get xbmc cache
- * @require xbmcORMCollection Return orm collection
+ * @require xbmcCollection Return orm collection
  */
-    .service('xbmcAlbumRepository', ['xbmcAlbumEntity', 'xbmcCache', 'xbmcORMCollection',
-        function (xbmcAlbumEntity, xbmcCache, xbmcORMCollection) {
+    .service('xbmcAlbumRepository', ['xbmcAlbumEntity', 'xbmcCache', 'xbmcCollection',
+        function (xbmcAlbumEntity, xbmcCache, xbmcCollection) {
             var _this = this;
 
-            var cache = xbmcCache.cache['albums'] = new xbmcORMCollection();
+            var cache = xbmcCache.cache['albums'] = new xbmcCollection();
+
+            _this.canHydrate = function (data) {
+                return data.result.albums || data.result.albumdetails;
+            };
 
             _this.hydrate = function (data) {
 
@@ -22,7 +26,7 @@ angular.module('xbmc')
                 else if (data.result.albumdetails) {
                     return _this.createOrUpdateAlbum(data.result.albumdetails);
                 }
-            }
+            };
 
             _this.createOrUpdateAlbum = function (value) {
                 var album = cache[value.albumid] || new xbmcAlbumEntity();
@@ -33,12 +37,12 @@ angular.module('xbmc')
                 cache.addItem(album);
 
                 return album;
-            }
+            };
 
             _this.createOrUpdateAlbums = function (values) {
 
                 if (angular.isArray(values)) {
-                    var result = new xbmcORMCollection;
+                    var result = new xbmcCollection;
 
                     angular.forEach(values, function (value) {
                         result.addItem(_this.createOrUpdateAlbum(value));
@@ -46,6 +50,6 @@ angular.module('xbmc')
 
                     return result;
                 }
-            }
+            };
         }
     ]);

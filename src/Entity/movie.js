@@ -6,10 +6,10 @@ angular.module('xbmc')
  *
  * @require $q Promise for model request
  * @require xbmcIntrospection Get all xbmc available method
- * @require xbmcORMCollection Return orm collection
+ * @require xbmcCollection Return orm collection
  */
-    .factory('xbmcMovieEntity', ['$q', 'xbmcIntrospection', 'xbmcORMCollection',
-        function ($q, xbmcIntrospection, xbmcORMCollection) {
+    .factory('xbmcMovieEntity', ['$q', 'xbmcIntrospection', 'xbmcCollection',
+        function ($q, xbmcIntrospection, xbmcCollection) {
 
             function xbmcMovie() {
 
@@ -56,7 +56,7 @@ angular.module('xbmc')
                     xbmcIntrospection.introspection.VideoLibrary.GetGenres(params)
                         .then(function (genres) {
                             var allGenresByLabelKey = genres.getByLabelKey();
-                            var genresCollection = new xbmcORMCollection();
+                            var genresCollection = new xbmcCollection();
 
                             angular.forEach(_this.genre, function (genreLabel) {
                                 if (allGenresByLabelKey[genreLabel]) {

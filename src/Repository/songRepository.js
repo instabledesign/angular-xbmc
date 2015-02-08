@@ -6,14 +6,18 @@ angular.module('xbmc')
  *
  * @require xbmcSongEntity The song model
  * @require xbmcCache Get xbmc cache
- * @require xbmcORMCollection Return orm collection
+ * @require xbmcCollection Return orm collection
  */
-    .service('xbmcSongRepository', ['xbmcSongEntity', 'xbmcCache', 'xbmcORMCollection',
-        function (xbmcSongEntity, xbmcCache, xbmcORMCollection) {
+    .service('xbmcSongRepository', ['xbmcSongEntity', 'xbmcCache', 'xbmcCollection',
+        function (xbmcSongEntity, xbmcCache, xbmcCollection) {
 
             var _this = this;
 
-            var cache = xbmcCache.cache['songs'] = new xbmcORMCollection();
+            var cache = xbmcCache.cache['songs'] = new xbmcCollection();
+
+            _this.canHydrate = function (data) {
+                return data.result.songs || data.result.songdetails;
+            };
 
             _this.hydrate = function (data) {
 
@@ -39,7 +43,7 @@ angular.module('xbmc')
             _this.createOrUpdateSongs = function (dataSong) {
 
                 if (angular.isArray(dataSong)) {
-                    var result = new xbmcORMCollection();
+                    var result = new xbmcCollection();
 
                     angular.forEach(dataSong, function (value) {
                         result.addItem(_this.createOrUpdateSong(value));

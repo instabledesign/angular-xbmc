@@ -8,8 +8,8 @@
  * - validate request's parameter
  */
 angular.module('xbmc')
-    .service('xbmcRequestWorkflow', ['xbmcRequest', 'xbmcConnexion', '$xbmcRequestQueue', 'xbmcCache', 'xbmcRequestValidator', '$q', 'md5',
-        function (xbmcRequest, xbmcConnexion, $xbmcRequestQueue, xbmcCache, xbmcRequestValidator, $q, md5) {
+    .service('xbmcRequestWorkflow', ['xbmcRequest', 'xbmcConnexion', '$xbmcRequestQueue', 'xbmcCache', 'xbmcRequestValidator', 'xbmcORM', '$q', 'md5',
+        function (xbmcRequest, xbmcConnexion, $xbmcRequestQueue, xbmcCache, xbmcRequestValidator, xbmcORM,  $q, md5) {
 
             var _this = this;
 
@@ -97,6 +97,8 @@ angular.module('xbmc')
 
                                 return;
                             }
+
+                            this.defer.resolve(xbmcORM.processData(response));
                         }
                     }
                 });

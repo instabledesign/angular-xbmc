@@ -6,14 +6,18 @@ angular.module('xbmc')
  *
  * @require xbmcGenreEntity The genre model
  * @require xbmcCache Get xbmc cache
- * @require xbmcORMCollection Return orm collection
+ * @require xbmcCollection Return orm collection
  */
-    .service('xbmcGenreRepository', ['xbmcGenreEntity', 'xbmcCache', 'xbmcORMCollection',
-        function (xbmcGenreEntity, xbmcCache, xbmcORMCollection) {
+    .service('xbmcGenreRepository', ['xbmcGenreEntity', 'xbmcCache', 'xbmcCollection',
+        function (xbmcGenreEntity, xbmcCache, xbmcCollection) {
 
             var _this = this;
 
-            var cache = xbmcCache.cache['genres'] = new xbmcORMCollection();
+            var cache = xbmcCache.cache['genres'] = new xbmcCollection();
+
+            _this.canHydrate = function (data) {
+                return data.result.genres;
+            };
 
             _this.hydrate = function (data) {
 
@@ -36,7 +40,7 @@ angular.module('xbmc')
             _this.createOrUpdateGenres = function (values) {
 
                 if (angular.isArray(values)) {
-                    var result = new xbmcORMCollection();
+                    var result = new xbmcCollection();
 
                     angular.forEach(values, function (value) {
                         result.addItem(_this.createOrUpdateGenre(value));

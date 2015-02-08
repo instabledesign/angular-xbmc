@@ -15,6 +15,8 @@ angular.module('xbmc')
                 responsesById = {},
                 notifications = {};
 
+            _this.cache = ['movies'];
+
             _this.addRequest = function (request, force) {
                 indexRequestById(request);
                 indexRequestByMD5(request, force);

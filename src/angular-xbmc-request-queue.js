@@ -14,10 +14,11 @@ angular.module('xbmc')
             var _this = this;
             var queue = [];
             var inProcess = false;
+            var queueId;
 
-            _this.requestParallel = 2;
-            _this.requestInProcessLifeTime = 30;// in second
-            _this.requestProcessedLifeTime = 300;// in second
+//            _this.requestParallel = 2;
+//            _this.requestInProcessLifeTime = 30;// in second
+//            _this.requestProcessedLifeTime = 300;// in second
 
             _this.$get = ['$rootScope',
                 function () {
@@ -26,7 +27,7 @@ angular.module('xbmc')
                     };
 
                     _this.process = function (id) {
-                        if (true == inProcess && inProcess != id) {
+                        if (true == inProcess && queueId != id) {
                             return;
                         }
 
@@ -35,11 +36,12 @@ angular.module('xbmc')
                             return;
                         }
 
-                        inProcess = new Date().getTime();
+                        inProcess = true;
+                        queueId = new Date().getTime();
                         queue[0].process();
                         queue.splice(0, 1);
 
-                        _this.process(inProcess);
+                        _this.process(queueId);
                     };
 
                     return this;

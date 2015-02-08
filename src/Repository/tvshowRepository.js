@@ -6,14 +6,18 @@ angular.module('xbmc')
  *
  * @require xbmcTvshowEntity The TVShow model
  * @require xbmcCache Get xbmc cache
- * @require xbmcORMCollection Return orm collection
+ * @require xbmcCollection Return orm collection
  */
-    .service('xbmcTvshowRepository', ['xbmcTvshowEntity', 'xbmcCache', 'xbmcORMCollection',
-        function (xbmcTvshowEntity, xbmcCache, xbmcORMCollection) {
+    .service('xbmcTvshowRepository', ['xbmcTvshowEntity', 'xbmcCache', 'xbmcCollection',
+        function (xbmcTvshowEntity, xbmcCache, xbmcCollection) {
 
             var _this = this;
 
-            var cache = xbmcCache.cache['tvshows'] = new xbmcORMCollection();
+            var cache = xbmcCache.cache['tvshows'] = new xbmcCollection();
+
+            _this.canHydrate = function (data) {
+                return data.result.tvshows || data.result.tvshowdetails;
+            };
 
             _this.hydrate = function (data) {
 
@@ -39,7 +43,7 @@ angular.module('xbmc')
             _this.createOrUpdateTvshows = function (dataTvshows) {
 
                 if (angular.isArray(dataTvshows)) {
-                    var result = new xbmcORMCollection();
+                    var result = new xbmcCollection();
 
                     angular.forEach(dataTvshows, function (dataTvshow) {
                         result.addItem(_this.createOrUpdateTvshow(dataTvshow));

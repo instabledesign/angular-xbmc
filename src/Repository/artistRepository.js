@@ -6,13 +6,17 @@ angular.module('xbmc')
  *
  * @require xbmcArtistEntity The artist model
  * @require xbmcCache Get xbmc cache
- * @require xbmcORMCollection Return orm collection
+ * @require xbmcCollection Return orm collection
  */
-    .service('xbmcArtistRepository', ['xbmcArtistEntity', 'xbmcCache', 'xbmcORMCollection',
-        function (xbmcArtistEntity, xbmcCache, xbmcORMCollection) {
+    .service('xbmcArtistRepository', ['xbmcArtistEntity', 'xbmcCache', 'xbmcCollection',
+        function (xbmcArtistEntity, xbmcCache, xbmcCollection) {
             var _this = this;
 
-            var cache = xbmcCache.cache['artists'] = new xbmcORMCollection();
+            var cache = xbmcCache.cache['artists'] = new xbmcCollection();
+
+            _this.canHydrate = function (data) {
+                return data.result.artists || data.result.artistdetails;
+            };
 
             _this.hydrate = function (data) {
 
@@ -38,7 +42,7 @@ angular.module('xbmc')
             _this.createOrUpdateArtists = function (values) {
 
                 if (angular.isArray(values)) {
-                    var result = new xbmcORMCollection();
+                    var result = new xbmcCollection();
 
                     angular.forEach(values, function (value) {
                         result.addItem(_this.createOrUpdateArtist(value));

@@ -6,14 +6,18 @@ angular.module('xbmc')
  *
  * @require xbmcEpisodeEntity The episode model
  * @require xbmcCache Get xbmc cache
- * @require xbmcORMCollection Return orm collection
+ * @require xbmcCollection Return orm collection
  */
-    .service('xbmcEpisodeRepository', ['xbmcEpisodeEntity', 'xbmcCache', 'xbmcORMCollection',
-        function (xbmcEpisodeEntity, xbmcCache, xbmcORMCollection) {
+    .service('xbmcEpisodeRepository', ['xbmcEpisodeEntity', 'xbmcCache', 'xbmcCollection',
+        function (xbmcEpisodeEntity, xbmcCache, xbmcCollection) {
 
             var _this = this;
 
-            var cache = xbmcCache.cache['episodes'] = new xbmcORMCollection();
+            var cache = xbmcCache.cache['episodes'] = new xbmcCollection();
+
+            _this.canHydrate = function (data) {
+                return data.result.episodes || data.result.episodedetails;
+            };
 
             _this.hydrate = function (data) {
 
@@ -39,7 +43,7 @@ angular.module('xbmc')
             _this.createOrUpdateEpisodes = function (values) {
 
                 if (angular.isArray(values)) {
-                    var result = new xbmcORMCollection();
+                    var result = new xbmcCollection();
 
                     angular.forEach(values, function (value) {
                         result.addItem(_this.createOrUpdateEpisode(value));
